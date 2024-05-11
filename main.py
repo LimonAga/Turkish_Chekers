@@ -81,7 +81,7 @@ selected_cell = None
 
 #! Screen setup
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Türk Daması')
+pygame.display.set_caption('Turkish Chekers')
 pygame.display.set_icon(white_piece)
 clock = pygame.time.Clock()
 
@@ -177,6 +177,7 @@ def check_win():
                 else:
                     w_piece_count += 1
 
+    # Win
     if b_piece_count == 0 or w_piece_count == 0:
         if game_state == 1:
             pygame.mixer.Sound('audio/win.wav').play()
@@ -191,17 +192,17 @@ def check_win():
 
     if game_state == 0:
         if current_side == 'b':
-            end_text = 'Beyaz Kazandı'
+            end_text = 'White Wins'
             text_color = 'white'
             rect_color = 'black'
 
         else:
-            end_text = 'Siyah Kazandı'
+            end_text = 'Black Wins'
             text_color = 'black'
             rect_color = 'white'
 
     elif game_state == 2:
-        end_text = 'Berabere'
+        end_text = 'Tie'
         text_color = 'grey'
 
 def check_promotion():
@@ -298,7 +299,7 @@ def highlight_cells_between(screen, start, end):
         pygame.draw.rect(screen, CAPTURE_HIGHLIGHT_COLOR, (point[1] * CELL_SIZE + OFFSET, point[0] * CELL_SIZE + OFFSET, 50, 50))
 
 def draw():
-    #! Draw the board
+    # Draw the board
     screen.blit(board_image,(0,0))
 
     if moves and draw_moves:
@@ -320,6 +321,7 @@ def draw():
         for row, col in highlight_cells_that_can_capture:
             pygame.draw.rect(screen, ATTACKER_HIGHLIGHT_COLOR, (col * CELL_SIZE + OFFSET, row * CELL_SIZE + OFFSET, 50, 50))
 
+    # Draw pieces
     for row in range(ROWS):
         for col in range(COLS):
             if board[row][col] and (row, col) not in ignored_cells:
@@ -331,10 +333,12 @@ def draw():
                 
                 screen.blit(image, (col * CELL_SIZE + OFFSET, row * CELL_SIZE + OFFSET))
 
+    # Highlight avaible spaces to move
     if highlight_cells_to_move:
         for row, col in highlight_cells_to_move:
             pygame.draw.rect(screen, MOVE_HIGHLIGHT_COLOR, (col * CELL_SIZE + OFFSET, row * CELL_SIZE + OFFSET, 50, 50))
 
+    # Draw end text
     if end_text:
         rect_x, rect_y = (WIDTH - rect_width) // 2, (HEIGHT - rect_height) // 2
         pygame.draw.rect(screen, rect_color, (rect_x, rect_y, rect_width, rect_height))
@@ -343,6 +347,7 @@ def draw():
         text_rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
         screen.blit(text, text_rect)
 
+    # Draw the turn indicator
     if game_state == 1:
         if current_side == 'w':
             screen.blit(white_piece, (WIDTH - 50, 0))
@@ -401,17 +406,17 @@ def animate_movement(start_cell, end_cell, taken_cell=None, total_time=animation
 
 run = True
 while run:
-    #! Event handling
+    # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
 
-        #! Keyboard Input
+        # Keyboard Input
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 run = False
 
-        #! Mouse Input
+        # Mouse Input
         if event.type == pygame.MOUSEBUTTONDOWN:
             x,y = pygame.mouse.get_pos()
 
