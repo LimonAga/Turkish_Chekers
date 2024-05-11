@@ -2,6 +2,7 @@
 
 This is a game that I always loved but unfortunately there is not much implementations of this game so I dedicated to make my own. This was a fun project to make. This is not the cleanest approach but it works fine and it is fun to play.
 
+![Checkers](image1.PNG)
 ## Rules
 1. **Movement**: 
    - Pieces can move forwards, right, and left one step if the space is empty.
