@@ -1,6 +1,6 @@
 # Turkish Checkers
 
-This is a game that I always loved but unfortunately there is not much implementations of this game so I dedicated to make my own. This was a fun project to make. This is not the cleanest approach but it works fine and it is fun to play.
+This is a game that I always loved but unfortunately there is not much implementations of this game with the last 3 pieces rule so I decited to make my own. This was a fun project to make. Hopefully it helps you to make your own version.
 
 ![Checkers](image1.PNG)
 ## Rules
